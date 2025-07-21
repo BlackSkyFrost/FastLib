@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from .views import MyPasswordChangeView
 urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('login/', views.login_view, name='login'),
@@ -9,8 +10,5 @@ urlpatterns = [
 ]
 urlpatterns += [
     path('editar-perfil/', views.editar_perfil_view, name='editar_perfil'),
-    path('cambiar-contraseña/', auth_views.PasswordChangeView.as_view(
-        template_name='fastlib/cambiar_contraseña.html',
-        success_url='/'
-    ), name='cambiar_contraseña'),
+    path('cambiar-contraseña/', MyPasswordChangeView.as_view(), name='cambiar_contraseña'),
 ]
