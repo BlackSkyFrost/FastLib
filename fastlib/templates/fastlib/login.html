@@ -5,6 +5,14 @@
     <h2>Iniciar sesión</h2>
 <form method="post" class="card p-4 shadow-sm" style="max-width: 400px;">
     {% csrf_token %}
+    <!-- 👇 Mostrar errores generales como 'usuario o contraseña inválidos' -->
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
     {% for field in form %}
         <div class="mb-3">
             {{ field.label_tag }}
