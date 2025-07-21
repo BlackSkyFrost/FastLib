@@ -18,7 +18,7 @@ def login_view(request):
             return redirect('inicio')
     else:
         form = AuthenticationForm()
-    return redirect(request, 'fastlib/login.html', {'form': form})
+    return render(request, 'fastlib/login.html', {'form': form})
 
 def registro_view(request):
     if request.method == 'POST':
