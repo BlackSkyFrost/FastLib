@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- bootstrap CSS ON-->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container mt-5">
-<h2>Registro</h2>
-<form method="post" class="card p-4 shadow-sm" style="max-width: 400px;">
-    {% csrf_token %}
-    {% for field in form %}
-        <div class="mb-3">
-            {{ field.label_tag }}
-            {{ field }}
-            {% if field.errors %}
-                <div class="text-danger small">{{ field.errors|striptags }}</div>
-            {% endif %}
-        </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary w-100">Registrarme</button>
-</form>
-<a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a>
-<!-- Bootstrap JS (opcional, solo si usas componentes dinámicos) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Registro{% endblock %}
+{% block content %}
+    <h2>Registro</h2>
+    <form method="post" class="card p-4 shadow-sm" style="max-width: 400px;">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary w-100">Registrarme</button>
+    </form>
+{% endblock %}
