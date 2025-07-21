@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 
@@ -30,3 +30,6 @@ def registro_view(request):
         form = UserCreationForm()
     return render(request, 'fastlib/registro.html', {'form': form})
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
