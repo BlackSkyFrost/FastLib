@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import FormLoginPersonalizado, FormRegistroPersonalizado
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 # Create your views here.
 @login_required
 def inicio(request):
@@ -40,3 +41,11 @@ def logout_view(request):
 @login_required
 def editar_perfil_view(request):
     return render(request, 'fastlib/editar_pefil.html')
+
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'fastlib/cambiar_contraseña.html'
+    success_url = reverse_lazy('inicio')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Contraseña cambiada con exito.')
+        return super().form_valid(form)
