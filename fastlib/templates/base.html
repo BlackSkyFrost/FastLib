@@ -22,13 +22,16 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <span class="nav-link text-white">Hola, {{ user.username }}</span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarUserDropdown" role="button" data-bs-dismiss="dropdown" aria-expanded="false">{{ user.username }}</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
+                                <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar Perfil</a></li>
+                                <li><a class="dropdown-item" href="{% url 'cambiar_contraseña' %}">Cambiar Contraseña</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>    
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-                        </li>
-                    {% else %}
+                    {% else %} 
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         </li>
