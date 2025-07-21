@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import FormLoginPersonalizado, FormRegistroPersonalizado
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -25,6 +26,7 @@ def registro_view(request):
         form = FormRegistroPersonalizado(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
             return redirect('login')
     else:
         form = FormRegistroPersonalizado()
@@ -32,4 +34,5 @@ def registro_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.info(request, 'Has cerrado sesión.')
     return redirect('login')
