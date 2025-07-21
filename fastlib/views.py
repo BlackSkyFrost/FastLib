@@ -36,3 +36,7 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'Has cerrado sesión.')
     return redirect('login')
+
+@login_required
+def editar_perfil_view(request):
+    return render(request, 'fastlib/editar_pefil.html')
