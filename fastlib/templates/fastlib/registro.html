@@ -8,10 +8,18 @@
 </head>
 <body class="container mt-5">
 <h2>Registro</h2>
-<form method="post">
+<form method="post" class="card p-4 shadow-sm" style="max-width: 400px;">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Registrarme</button>
+    {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="text-danger small">{{ field.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary w-100">Registrarme</button>
 </form>
 <a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a>
 <!-- Bootstrap JS (opcional, solo si usas componentes dinámicos) -->

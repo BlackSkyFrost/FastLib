@@ -13,6 +13,12 @@ class FormRegistroPersonalizado(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                'class': 'form-control',
+                'placeholder': field.label
+            })
         self.fields['username'].label = 'Nombre de usuario'
         self.fields['password1'].label = 'Contraseña'
         self.fields['password2'].label = 'Confirmar contraseña'
@@ -20,6 +26,12 @@ class FormRegistroPersonalizado(UserCreationForm):
 class FormLoginPersonalizado(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                'class': 'form-control',
+                'placeholder': field.label
+            })
         self.fields['username'].label = 'Usuario'
         self.fields['password'].label = 'Contraseña'
         self.error_messages.update({
