@@ -71,12 +71,25 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.querySelector('#id_password1');
+    const rulesBox = document.querySelector('#password-rules-box');
     const ruleLength = document.querySelector('#rule-length');
     const ruleUppercase = document.querySelector('#rule-uppercase');
     const ruleNumber = document.querySelector('#rule-number');
     const ruleSpecial = document.querySelector('#rule-special');
 
-    if (passwordInput) {
+    if (passwordInput && rulesBox) {
+
+      passwordInput.addEventListener('focus', function () {
+        rulesBox.classList.remove('d-none');
+      });
+
+       passwordInput.addEventListener('blur', function () {
+        // Espera un poquito por si el usuario va a hacer clic en las reglas
+        setTimeout(() => {
+          rulesBox.classList.add('d-none');
+        }, 200);
+      });
+      
       passwordInput.addEventListener('input', function () {
         const value = passwordInput.value;
 
