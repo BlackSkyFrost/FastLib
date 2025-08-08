@@ -80,17 +80,17 @@
       passwordInput.addEventListener('input', function () {
         const value = passwordInput.value;
 
-        ruleLength.classList.toggle('text-success', value.length >= 8);
-        ruleLength.classList.toggle('text-danger', value.length < 8);
+        ruleLength.classList.toggle('bg-success', value.length >= 8);
+        ruleLength.classList.toggle('bg-danger', value.length < 8);
 
-        ruleUppercase.classList.toggle('text-success', /[A-Z]/.test(value));
-        ruleUppercase.classList.toggle('text-danger', !/[A-Z]/.test(value));
+        ruleUppercase.classList.toggle('bg-success', /[A-Z]/.test(value));
+        ruleUppercase.classList.toggle('bg-danger', !/[A-Z]/.test(value));
 
-        ruleNumber.classList.toggle('text-success', /\d/.test(value));
-        ruleNumber.classList.toggle('text-danger', !/\d/.test(value));
+        ruleNumber.classList.toggle('bg-success', /\d/.test(value));
+        ruleNumber.classList.toggle('bg-danger', !/\d/.test(value));
 
-        ruleSpecial.classList.toggle('text-success', /[^A-Za-z0-9]/.test(value));
-        ruleSpecial.classList.toggle('text-danger', !/[^A-Za-z0-9]/.test(value));
+        ruleSpecial.classList.toggle('bg-success', /[^A-Za-z0-9]/.test(value));
+        ruleSpecial.classList.toggle('bg-danger', !/[^A-Za-z0-9]/.test(value));
       });
     }
   });
