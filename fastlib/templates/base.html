@@ -68,5 +68,32 @@
     });
   }, 3000); // tiempo antes de iniciar el fade
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.querySelector('#id_password1');
+    const ruleLength = document.querySelector('#rule-length');
+    const ruleUppercase = document.querySelector('#rule-uppercase');
+    const ruleNumber = document.querySelector('#rule-number');
+    const ruleSpecial = document.querySelector('#rule-special');
+
+    if (passwordInput) {
+      passwordInput.addEventListener('input', function () {
+        const value = passwordInput.value;
+
+        ruleLength.classList.toggle('text-success', value.length >= 8);
+        ruleLength.classList.toggle('text-danger', value.length < 8);
+
+        ruleUppercase.classList.toggle('text-success', /[A-Z]/.test(value));
+        ruleUppercase.classList.toggle('text-danger', !/[A-Z]/.test(value));
+
+        ruleNumber.classList.toggle('text-success', /\d/.test(value));
+        ruleNumber.classList.toggle('text-danger', !/\d/.test(value));
+
+        ruleSpecial.classList.toggle('text-success', /[^A-Za-z0-9]/.test(value));
+        ruleSpecial.classList.toggle('text-danger', !/[^A-Za-z0-9]/.test(value));
+      });
+    }
+  });
+</script>
 </body>
 </html>
