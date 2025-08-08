@@ -2,18 +2,35 @@
 
 {% block title %}Registro{% endblock %}
 {% block content %}
-    <h2>Registro</h2>
-    <form method="post" class="card p-4 shadow-sm" style="max-width: 400px;">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="mb-3">
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.errors %}
-                    <div class="text-danger small">{{ field.errors|striptags }}</div>
-                {% endif %}
+<div class="container">
+    <h2 class="mb-4">Registro</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" class="card p-4 shadow-sm">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small">{{ field.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary w-100">Registrarme</button>
+            </form>
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+            <div class="card p-3">
+                <h5>Requisitos de la contraseña</h5>
+                <ul id="password-rules" class="list-unstyled mb-0">
+                    <li id="rule-length" class="text-danger">Mínimo 8 caracteres</li>
+                    <li id="rule-uppercase" class="text-danger">Al menos una mayúscula</li>
+                    <li id="rule-number" class="text-danger">Al menos un número</li>
+                    <li id="rule-special" class="text-danger">Al menos un símbolo (!@#$...)</li>
+                </ul>
             </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary w-100">Registrarme</button>
-    </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
